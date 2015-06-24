@@ -1,10 +1,11 @@
 package lin.rong.myandroidframework;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,6 @@ public class MyDrawerFragment extends Fragment {
 
     private DrawerLayout myDrawerLayout;
     private MyDrawerFragment myDrawerFragment;
-    private View myDrawerView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ListView drawerListView;
 
@@ -35,7 +35,7 @@ public class MyDrawerFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(), data[position], Toast.LENGTH_SHORT).show();
-                myDrawerLayout.closeDrawer(myDrawerView);
+                myDrawerLayout.closeDrawer(GravityCompat.START);
             }
 
         });
@@ -45,9 +45,8 @@ public class MyDrawerFragment extends Fragment {
     public void init(DrawerLayout myDrawerLayout, MyDrawerFragment myDrawerFragment) {
         this.myDrawerLayout = myDrawerLayout;
         this.myDrawerFragment = myDrawerFragment;
-        this.myDrawerView = getActivity().findViewById(R.id.myDrawerFragment);
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true, R.drawable.ic_drawer,
+        actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             @Override
