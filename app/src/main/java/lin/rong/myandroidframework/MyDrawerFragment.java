@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyDrawerFragment extends Fragment {
 
@@ -19,6 +21,7 @@ public class MyDrawerFragment extends Fragment {
 
     private DrawerLayout myDrawerLayout;
     private MyDrawerFragment myDrawerFragment;
+    private View myDrawerView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ListView drawerListView;
 
@@ -27,12 +30,22 @@ public class MyDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         drawerListView = (ListView) inflater.inflate(R.layout.fragment_drawer_list, null);
         drawerListView.setAdapter(new MyAdapter());
+        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), data[position], Toast.LENGTH_SHORT).show();
+                myDrawerLayout.closeDrawer(myDrawerView);
+            }
+
+        });
         return drawerListView;
     }
 
     public void init(DrawerLayout myDrawerLayout, MyDrawerFragment myDrawerFragment) {
         this.myDrawerLayout = myDrawerLayout;
         this.myDrawerFragment = myDrawerFragment;
+        this.myDrawerView = getActivity().findViewById(R.id.myDrawerFragment);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true, R.drawable.ic_drawer,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
