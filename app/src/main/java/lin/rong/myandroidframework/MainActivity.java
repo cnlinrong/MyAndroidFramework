@@ -1,13 +1,19 @@
 package lin.rong.myandroidframework;
 
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +25,12 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
+    private String[] data = new String[] {"页面1", "页面2", "页面3"};
+
     private ViewPager myViewPager;
+    private ActionBar actionBar;
+    private DrawerLayout myDrawerLayout;
+    private MyDrawerFragment myDrawerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +48,8 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Toast.makeText(MainActivity.this, ((MyPagerAdapter) myViewPager.getAdapter()).data[position], Toast.LENGTH_SHORT).show();
+                actionBar.setSelectedNavigationItem(position);
+                Toast.makeText(MainActivity.this, data[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -46,6 +58,40 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
+
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        setupTabs();
+
+        myDrawerLayout = (DrawerLayout) findViewById(R.id.myDrawerLayout);
+        myDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        myDrawerFragment = (MyDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.myDrawerFragment);
+        myDrawerFragment.init(myDrawerLayout, myDrawerFragment);
+    }
+
+    private void setupTabs() {
+        for (int i = 0; i < data.length; i++) {
+            actionBar.addTab(actionBar.newTab().setText(data[i]).setTabListener(new ActionBar.TabListener() {
+
+                @Override
+                public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                    myViewPager.setCurrentItem(tab.getPosition(), true);
+                }
+
+                @Override
+                public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+                }
+
+                @Override
+                public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+                }
+
+            }));
+        }
     }
 
     @Override
@@ -67,8 +113,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public String[] data = new String[] {"页面1", "页面2", "页面3"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
