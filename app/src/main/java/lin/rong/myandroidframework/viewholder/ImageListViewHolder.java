@@ -16,7 +16,7 @@ public class ImageListViewHolder extends ViewHolderBase<JsonData> {
     private CubeImageView mImageView;
 
     private ImageListViewHolder(ImageLoader imageLoader) {
-        mImageLoader = imageLoader;
+        this.mImageLoader = imageLoader;
     }
 
     @Override

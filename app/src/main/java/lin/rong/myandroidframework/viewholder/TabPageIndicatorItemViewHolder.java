@@ -35,4 +35,5 @@ public class TabPageIndicatorItemViewHolder extends TabPageIndicator.ViewHolderB
             mTagView.setVisibility(View.INVISIBLE);
         }
     }
+
 }

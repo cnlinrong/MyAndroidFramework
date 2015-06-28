@@ -44,6 +44,7 @@ public class ViewPagerFragment extends Fragment {
 
         mListView.addHeaderView(headerView);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0) {
@@ -53,6 +54,7 @@ public class ViewPagerFragment extends Fragment {
                     }
                 }
             }
+
         });
 
         mAdapter = new ListViewDataAdapter<JsonData>();

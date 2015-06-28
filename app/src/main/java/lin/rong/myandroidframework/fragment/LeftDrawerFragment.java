@@ -21,7 +21,7 @@ import lin.rong.myandroidframework.R;
 
 public class LeftDrawerFragment extends Fragment {
 
-    private String[] data = new String[] {"选项1", "选项2", "选项3"};
+    private final String[] data = new String[] {"选项1", "选项2", "选项3"};
 
     private DrawerLayout mDrawerLayout;
     private LeftDrawerFragment leftDrawerFragment;

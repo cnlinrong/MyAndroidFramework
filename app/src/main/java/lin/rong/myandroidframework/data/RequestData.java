@@ -11,10 +11,12 @@ public class RequestData {
     public static void getImageList(final RequestFinishHandler<JsonData> requestFinishHandler) {
 
         CacheAbleRequestHandler requestHandler = new CacheAbleRequestJsonHandler() {
+
             @Override
             public void onCacheAbleRequestFinish(JsonData data, CacheAbleRequest.ResultType type, boolean outOfDate) {
                 requestFinishHandler.onRequestFinish(data);
             }
+
         };
 
         CacheAbleRequest<JsonData> request = new CacheAbleRequest<JsonData>(requestHandler);
@@ -26,4 +28,5 @@ public class RequestData {
         request.setCacheKey("image-list-1");
         request.send();
     }
+
 }
