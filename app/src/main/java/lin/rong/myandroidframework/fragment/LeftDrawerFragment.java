@@ -33,7 +33,7 @@ public class LeftDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         drawerListView = (ListView) inflater.inflate(R.layout.fragment_drawer_list, null);
-        drawerListView.setAdapter(new MyAdapter());
+        drawerListView.setAdapter(new DrawerListAdapter());
         drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -43,6 +43,7 @@ public class LeftDrawerFragment extends Fragment {
             }
 
         });
+        drawerListView.setItemChecked(0, true);
         return drawerListView;
     }
 
@@ -57,13 +58,11 @@ public class LeftDrawerFragment extends Fragment {
                 @Override
                 public void onDrawerClosed(View drawerView) {
                     super.onDrawerClosed(drawerView);
-                    getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
                 }
 
                 @Override
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-                    getActivity().getActionBar().setTitle(R.string.app_name);
                 }
 
             };
@@ -83,13 +82,11 @@ public class LeftDrawerFragment extends Fragment {
                 @Override
                 public void onDrawerClosed(View drawerView) {
                     super.onDrawerClosed(drawerView);
-                    getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
                 }
 
                 @Override
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-                    getActivity().getActionBar().setTitle(R.string.app_name);
                 }
 
             };
@@ -126,7 +123,7 @@ public class LeftDrawerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public class MyAdapter extends BaseAdapter {
+    public class DrawerListAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
