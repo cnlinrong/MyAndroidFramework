@@ -1,4 +1,4 @@
-package lin.rong.myandroidframework;
+package lin.rong.myandroidframework.data;
 
 import in.srain.cube.request.CacheAbleRequest;
 import in.srain.cube.request.CacheAbleRequestHandler;

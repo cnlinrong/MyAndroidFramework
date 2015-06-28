@@ -1,7 +1,6 @@
-package lin.rong.myandroidframework;
+package lin.rong.myandroidframework.activity;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -28,6 +27,10 @@ import in.srain.cube.views.pager.TabPageIndicator;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import lin.rong.myandroidframework.data.DemoRequestData;
+import lin.rong.myandroidframework.fragment.MyDrawerFragment;
+import lin.rong.myandroidframework.R;
+import lin.rong.myandroidframework.fragment.ViewPagerFragment;
 
 public class MainActivity extends FragmentActivity {
 

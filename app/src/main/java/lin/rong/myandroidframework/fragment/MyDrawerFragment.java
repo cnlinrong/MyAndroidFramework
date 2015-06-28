@@ -1,4 +1,4 @@
-package lin.rong.myandroidframework;
+package lin.rong.myandroidframework.fragment;
 
 import android.app.Fragment;
 import android.os.Build;
@@ -16,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import lin.rong.myandroidframework.R;
 
 public class MyDrawerFragment extends Fragment {
 

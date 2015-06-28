@@ -1,4 +1,4 @@
-package lin.rong.myandroidframework;
+package lin.rong.myandroidframework.viewholder;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import in.srain.cube.image.CubeImageView;
 import in.srain.cube.image.ImageLoader;
 import in.srain.cube.request.JsonData;
 import in.srain.cube.views.list.ViewHolderBase;
+import lin.rong.myandroidframework.R;
 
 public class ImageListViewHolder extends ViewHolderBase<JsonData> {
 

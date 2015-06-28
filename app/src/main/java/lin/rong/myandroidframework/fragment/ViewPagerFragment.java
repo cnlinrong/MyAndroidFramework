@@ -1,4 +1,4 @@
-package lin.rong.myandroidframework;
+package lin.rong.myandroidframework.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,8 @@ import in.srain.cube.image.ImageLoaderFactory;
 import in.srain.cube.request.JsonData;
 import in.srain.cube.util.CLog;
 import in.srain.cube.views.list.ListViewDataAdapter;
+import lin.rong.myandroidframework.viewholder.ImageListViewHolder;
+import lin.rong.myandroidframework.R;
 
 public class ViewPagerFragment extends Fragment {
 
