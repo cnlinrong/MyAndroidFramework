@@ -1,6 +1,7 @@
 package lin.rong.myandroidframework;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -22,7 +23,8 @@ public class MyDrawerFragment extends Fragment {
 
     private DrawerLayout myDrawerLayout;
     private MyDrawerFragment myDrawerFragment;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private ActionBarDrawerToggle actionBarDrawerToggleV4;
+    private android.support.v7.app.ActionBarDrawerToggle actionBarDrawerToggleV7;
     private ListView drawerListView;
 
     @Nullable
@@ -46,31 +48,59 @@ public class MyDrawerFragment extends Fragment {
         this.myDrawerLayout = myDrawerLayout;
         this.myDrawerFragment = myDrawerFragment;
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true,
-                R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            actionBarDrawerToggleV7 = new android.support.v7.app.ActionBarDrawerToggle(getActivity(), myDrawerLayout,
+                    R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
-            }
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+                    getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
+                }
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getActivity().getActionBar().setTitle(R.string.app_name);
-            }
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    getActivity().getActionBar().setTitle(R.string.app_name);
+                }
 
-        };
-        myDrawerLayout.post(new Runnable() {
+            };
+            myDrawerLayout.post(new Runnable() {
 
-            @Override
-            public void run() {
-                actionBarDrawerToggle.syncState();
-            }
+                @Override
+                public void run() {
+                    actionBarDrawerToggleV7.syncState();
+                }
 
-        });
-        myDrawerLayout.setDrawerListener(actionBarDrawerToggle);
+            });
+            myDrawerLayout.setDrawerListener(actionBarDrawerToggleV7);
+        } else {
+            actionBarDrawerToggleV4 = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true,
+                    R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+                    getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
+                }
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    getActivity().getActionBar().setTitle(R.string.app_name);
+                }
+
+            };
+            myDrawerLayout.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    actionBarDrawerToggleV4.syncState();
+                }
+
+            });
+            myDrawerLayout.setDrawerListener(actionBarDrawerToggleV4);
+        }
     }
 
     @Override
@@ -82,8 +112,14 @@ public class MyDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (actionBarDrawerToggleV7.onOptionsItemSelected(item)) {
+                return true;
+            }
+        } else {
+            if (actionBarDrawerToggleV4.onOptionsItemSelected(item)) {
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
