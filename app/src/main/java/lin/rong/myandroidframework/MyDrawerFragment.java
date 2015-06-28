@@ -3,9 +3,9 @@ package lin.rong.myandroidframework;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,17 +46,19 @@ public class MyDrawerFragment extends Fragment {
         this.myDrawerLayout = myDrawerLayout;
         this.myDrawerFragment = myDrawerFragment;
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true,
+                R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                getActivity().getActionBar().setTitle("选项" + (drawerListView.getCheckedItemPosition() + 1));
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                getActivity().getActionBar().setTitle(R.string.app_name);
             }
 
         };
