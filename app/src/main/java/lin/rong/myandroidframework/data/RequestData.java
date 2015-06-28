@@ -6,7 +6,7 @@ import in.srain.cube.request.CacheAbleRequestJsonHandler;
 import in.srain.cube.request.JsonData;
 import in.srain.cube.request.RequestFinishHandler;
 
-public class DemoRequestData {
+public class RequestData {
 
     public static void getImageList(final RequestFinishHandler<JsonData> requestFinishHandler) {
 
@@ -22,7 +22,7 @@ public class DemoRequestData {
         request.setCacheTime(3600);
         request.setTimeout(1000);
         request.getRequestData().setRequestUrl(url);
-        request.setAssertInitDataPath("request_init/demo/image-list.json");
+        request.setAssertInitDataPath("request_init/image-list.json");
         request.setCacheKey("image-list-1");
         request.send();
     }

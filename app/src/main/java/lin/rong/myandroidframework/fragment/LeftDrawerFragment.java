@@ -19,12 +19,12 @@ import android.widget.Toast;
 
 import lin.rong.myandroidframework.R;
 
-public class MyDrawerFragment extends Fragment {
+public class LeftDrawerFragment extends Fragment {
 
     private String[] data = new String[] {"选项1", "选项2", "选项3"};
 
     private DrawerLayout myDrawerLayout;
-    private MyDrawerFragment myDrawerFragment;
+    private LeftDrawerFragment leftDrawerFragment;
     private ActionBarDrawerToggle actionBarDrawerToggleV4;
     private android.support.v7.app.ActionBarDrawerToggle actionBarDrawerToggleV7;
     private ListView drawerListView;
@@ -46,9 +46,9 @@ public class MyDrawerFragment extends Fragment {
         return drawerListView;
     }
 
-    public void init(DrawerLayout myDrawerLayout, MyDrawerFragment myDrawerFragment) {
+    public void init(DrawerLayout myDrawerLayout, LeftDrawerFragment leftDrawerFragment) {
         this.myDrawerLayout = myDrawerLayout;
-        this.myDrawerFragment = myDrawerFragment;
+        this.leftDrawerFragment = leftDrawerFragment;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             actionBarDrawerToggleV7 = new android.support.v7.app.ActionBarDrawerToggle(getActivity(), myDrawerLayout,

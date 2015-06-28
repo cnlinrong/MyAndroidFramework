@@ -11,9 +11,9 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import lin.rong.myandroidframework.image.DemoDuiTangImageReSizer;
 import lin.rong.myandroidframework.image.PtrImageLoadHandler;
 
-public class MyApplication extends Application {
+public class App extends Application {
 
-    public static MyApplication instance;
+    public static App instance;
 
     @Override
     public void onCreate() {
