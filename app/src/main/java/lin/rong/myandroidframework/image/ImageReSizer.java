@@ -7,31 +7,21 @@ import in.srain.cube.util.CLog;
 /**
  * Created by srain on 8/19/14.
  */
-public class DemoDuiTangImageReSizer extends DefaultImageReSizer {
+public class ImageReSizer extends DefaultImageReSizer {
 
+    private static final int[] CDN_FIX_WIDTH_SIZE = {110, 150, 170, 220, 240, 290, 450, 580, 620, 790};
 
-    private static DemoDuiTangImageReSizer sInstance;
-
-    public static DemoDuiTangImageReSizer getInstance() {
-        if (sInstance == null) {
-            sInstance = new DemoDuiTangImageReSizer();
-        }
-        return sInstance;
-    }
+    private static ImageReSizer sInstance;
 
     private static String TAG = "thumb";
     private static String SP = "_";
     private static String DOT = ".";
 
-    private static final int[] CDN_FIX_WIDTH_SIZE = {110, 150, 170, 220, 240, 290, 450, 580, 620, 790};
-
-    @Override
-    public String getRemoteUrl(ImageTask imageTask) {
-        String url = imageTask.getOriginUrl();
-        int size = findBestCDNSize(CDN_FIX_WIDTH_SIZE, imageTask.getRequestSize().x, true);
-        url = url.replace(TAG, TAG + DOT + size + SP + size);
-        CLog.d("test", "getRemoteUrl: %s %s", imageTask.getRequestSize(), url);
-        return url;
+    public static ImageReSizer getInstance() {
+        if (sInstance == null) {
+            sInstance = new ImageReSizer();
+        }
+        return sInstance;
     }
 
     private static int binarySearch(int[] srcArray, int des, boolean higher) {
@@ -61,7 +51,6 @@ public class DemoDuiTangImageReSizer extends DefaultImageReSizer {
     }
 
     private static int findBestCDNSize(int[] array, int size, boolean higher) {
-
         if (size >= array[array.length - 1]) {
             return array[array.length - 1];
         }
@@ -69,4 +58,14 @@ public class DemoDuiTangImageReSizer extends DefaultImageReSizer {
         int pos = binarySearch(array, size, higher);
         return array[pos];
     }
+
+    @Override
+    public String getRemoteUrl(ImageTask imageTask) {
+        String url = imageTask.getOriginUrl();
+        int size = findBestCDNSize(CDN_FIX_WIDTH_SIZE, imageTask.getRequestSize().x, true);
+        url = url.replace(TAG, TAG + DOT + size + SP + size);
+        CLog.d("test", "getRemoteUrl: %s %s", imageTask.getRequestSize(), url);
+        return url;
+    }
+
 }

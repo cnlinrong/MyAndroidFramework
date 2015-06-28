@@ -25,9 +25,11 @@ import lin.rong.myandroidframework.viewholder.HomeCatItemViewHolder;
 
 public class MainActivity extends FragmentActivity {
 
-    private ViewPager myViewPager;
+    private final int startIndex = 0;
+
+    private ViewPager mViewPager;
     private ActionBar actionBar;
-    private DrawerLayout myDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     private LeftDrawerFragment leftDrawerFragment;
     private TabPageIndicator mCatTabPageIndicator;
     private PtrFrameLayout mPtrFrame;
@@ -36,12 +38,11 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.view_pager_ptr_frame);
         mPtrFrame.disableWhenHorizontalMove(true);
-
-        int startIndex = 0;
 
         mCatTabPageIndicator = (TabPageIndicator) findViewById(R.id.view_pager_tab_indicator);
         ArrayList<ViewPagerFragment> list = new ArrayList<ViewPagerFragment>();
@@ -65,8 +66,8 @@ public class MainActivity extends FragmentActivity {
 
         });
 
-        myViewPager = (ViewPager) findViewById(R.id.myViewPager);
-        myViewPager.setAdapter(mPagerAdapter);
+        mViewPager = (ViewPager) findViewById(R.id.myViewPager);
+        mViewPager.setAdapter(mPagerAdapter);
 
         mCatTabPageIndicator.setViewHolderCreator(new TabPageIndicator.ViewHolderCreator() {
 
@@ -84,18 +85,18 @@ public class MainActivity extends FragmentActivity {
             }
 
         });
-        mCatTabPageIndicator.setViewPager(myViewPager);
+        mCatTabPageIndicator.setViewPager(mViewPager);
 
-        myDrawerLayout = (DrawerLayout) findViewById(R.id.myDrawerLayout);
-        myDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.myDrawerLayout);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         leftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.leftDrawerFragment);
-        leftDrawerFragment.init(myDrawerLayout, leftDrawerFragment);
+        leftDrawerFragment.init(mDrawerLayout, leftDrawerFragment);
 
         actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myViewPager.setCurrentItem(startIndex);
+        mViewPager.setCurrentItem(startIndex);
     }
 
     private void switchTo(int position) {
@@ -123,7 +124,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mCatTabPageIndicator.moveToItem(myViewPager.getCurrentItem());
+
+        mCatTabPageIndicator.moveToItem(mViewPager.getCurrentItem());
     }
 
 }

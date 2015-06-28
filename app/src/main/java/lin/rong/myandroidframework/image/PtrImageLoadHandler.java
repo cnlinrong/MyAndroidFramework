@@ -30,4 +30,5 @@ public class PtrImageLoadHandler implements ImageLoadHandler {
             cubeImageView.setImageDrawable(new ColorDrawable(Color.RED));
         }
     }
+
 }

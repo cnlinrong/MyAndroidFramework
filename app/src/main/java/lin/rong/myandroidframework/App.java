@@ -8,7 +8,7 @@ import in.srain.cube.request.RequestCacheManager;
 import in.srain.cube.util.CLog;
 import in.srain.cube.util.CubeDebug;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import lin.rong.myandroidframework.image.DemoDuiTangImageReSizer;
+import lin.rong.myandroidframework.image.ImageReSizer;
 import lin.rong.myandroidframework.image.PtrImageLoadHandler;
 
 public class App extends Application {
@@ -18,6 +18,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         instance = this;
 
         String environment = "";
@@ -35,11 +36,11 @@ public class App extends Application {
         PtrFrameLayout.DEBUG = true;
         PtrFrameLayout.DEBUG = false;
 
-        ImageLoaderFactory.setDefaultImageReSizer(DemoDuiTangImageReSizer.getInstance());
+        ImageLoaderFactory.setDefaultImageReSizer(ImageReSizer.getInstance());
         ImageLoaderFactory.setDefaultImageLoadHandler(new PtrImageLoadHandler());
         String dir = "request-cache";
-        // ImageLoaderFactory.init(this);
         RequestCacheManager.init(this, dir, 1024 * 10, 1024 * 10);
         Cube.onCreate(this);
     }
+
 }

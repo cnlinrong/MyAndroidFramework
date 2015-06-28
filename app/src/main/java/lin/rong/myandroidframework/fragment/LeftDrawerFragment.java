@@ -23,7 +23,7 @@ public class LeftDrawerFragment extends Fragment {
 
     private String[] data = new String[] {"选项1", "选项2", "选项3"};
 
-    private DrawerLayout myDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     private LeftDrawerFragment leftDrawerFragment;
     private ActionBarDrawerToggle actionBarDrawerToggleV4;
     private android.support.v7.app.ActionBarDrawerToggle actionBarDrawerToggleV7;
@@ -39,7 +39,7 @@ public class LeftDrawerFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(), data[position], Toast.LENGTH_SHORT).show();
-                myDrawerLayout.closeDrawer(GravityCompat.START);
+                mDrawerLayout.closeDrawer(GravityCompat.START);
             }
 
         });
@@ -47,12 +47,12 @@ public class LeftDrawerFragment extends Fragment {
         return drawerListView;
     }
 
-    public void init(DrawerLayout myDrawerLayout, LeftDrawerFragment leftDrawerFragment) {
-        this.myDrawerLayout = myDrawerLayout;
+    public void init(DrawerLayout mDrawerLayout, LeftDrawerFragment leftDrawerFragment) {
+        this.mDrawerLayout = mDrawerLayout;
         this.leftDrawerFragment = leftDrawerFragment;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            actionBarDrawerToggleV7 = new android.support.v7.app.ActionBarDrawerToggle(getActivity(), myDrawerLayout,
+            actionBarDrawerToggleV7 = new android.support.v7.app.ActionBarDrawerToggle(getActivity(), mDrawerLayout,
                     R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
                 @Override
@@ -66,7 +66,7 @@ public class LeftDrawerFragment extends Fragment {
                 }
 
             };
-            myDrawerLayout.post(new Runnable() {
+            mDrawerLayout.post(new Runnable() {
 
                 @Override
                 public void run() {
@@ -74,9 +74,9 @@ public class LeftDrawerFragment extends Fragment {
                 }
 
             });
-            myDrawerLayout.setDrawerListener(actionBarDrawerToggleV7);
+            mDrawerLayout.setDrawerListener(actionBarDrawerToggleV7);
         } else {
-            actionBarDrawerToggleV4 = new ActionBarDrawerToggle(getActivity(), myDrawerLayout, true,
+            actionBarDrawerToggleV4 = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, true,
                     R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
                 @Override
@@ -90,7 +90,7 @@ public class LeftDrawerFragment extends Fragment {
                 }
 
             };
-            myDrawerLayout.post(new Runnable() {
+            mDrawerLayout.post(new Runnable() {
 
                 @Override
                 public void run() {
@@ -98,7 +98,7 @@ public class LeftDrawerFragment extends Fragment {
                 }
 
             });
-            myDrawerLayout.setDrawerListener(actionBarDrawerToggleV4);
+            mDrawerLayout.setDrawerListener(actionBarDrawerToggleV4);
         }
     }
 
