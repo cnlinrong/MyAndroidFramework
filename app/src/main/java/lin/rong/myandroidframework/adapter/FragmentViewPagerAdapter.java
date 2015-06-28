@@ -76,4 +76,5 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         }
         return mCurrentFragment.checkCanDoRefresh();
     }
+
 }

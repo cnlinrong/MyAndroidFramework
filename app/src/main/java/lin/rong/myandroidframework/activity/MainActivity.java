@@ -21,18 +21,19 @@ import lin.rong.myandroidframework.adapter.FragmentViewPagerAdapter;
 import lin.rong.myandroidframework.fragment.LeftDrawerFragment;
 import lin.rong.myandroidframework.R;
 import lin.rong.myandroidframework.fragment.ViewPagerFragment;
-import lin.rong.myandroidframework.viewholder.HomeCatItemViewHolder;
+import lin.rong.myandroidframework.viewholder.TabPageIndicatorItemViewHolder;
 
 public class MainActivity extends FragmentActivity {
 
     private final int startIndex = 0;
 
+    private DrawerLayout mDrawerLayout;
+    private PtrFrameLayout mPtrFrame;
     private ViewPager mViewPager;
     private ActionBar actionBar;
-    private DrawerLayout mDrawerLayout;
     private LeftDrawerFragment leftDrawerFragment;
-    private TabPageIndicator mCatTabPageIndicator;
-    private PtrFrameLayout mPtrFrame;
+    private TabPageIndicator mTabPageIndicator;
+
     private FragmentViewPagerAdapter mPagerAdapter;
 
     @Override
@@ -44,12 +45,13 @@ public class MainActivity extends FragmentActivity {
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.view_pager_ptr_frame);
         mPtrFrame.disableWhenHorizontalMove(true);
 
-        mCatTabPageIndicator = (TabPageIndicator) findViewById(R.id.view_pager_tab_indicator);
+        mTabPageIndicator = (TabPageIndicator) findViewById(R.id.view_pager_tab_indicator);
         ArrayList<ViewPagerFragment> list = new ArrayList<ViewPagerFragment>();
 
         for (int i = 1; i <= 8; i++) {
             list.add(ViewPagerFragment.create(i));
         }
+
         mPagerAdapter = new FragmentViewPagerAdapter(getSupportFragmentManager(), mPtrFrame, list);
 
         mPtrFrame.setPtrHandler(new PtrHandler() {
@@ -69,15 +71,15 @@ public class MainActivity extends FragmentActivity {
         mViewPager = (ViewPager) findViewById(R.id.myViewPager);
         mViewPager.setAdapter(mPagerAdapter);
 
-        mCatTabPageIndicator.setViewHolderCreator(new TabPageIndicator.ViewHolderCreator() {
+        mTabPageIndicator.setViewHolderCreator(new TabPageIndicator.ViewHolderCreator() {
 
             @Override
             public TabPageIndicator.ViewHolderBase createViewHolder() {
-                return new HomeCatItemViewHolder();
+                return new TabPageIndicatorItemViewHolder();
             }
 
         });
-        mCatTabPageIndicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        mTabPageIndicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int i) {
@@ -85,7 +87,7 @@ public class MainActivity extends FragmentActivity {
             }
 
         });
-        mCatTabPageIndicator.setViewPager(mViewPager);
+        mTabPageIndicator.setViewPager(mViewPager);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.myDrawerLayout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -113,7 +115,10 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.about) {
+        if (id == R.id.msg) {
+            Toast.makeText(MainActivity.this, "打开消息界面", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.about) {
             Toast.makeText(MainActivity.this, getString(R.string.about_desc), Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -125,7 +130,7 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        mCatTabPageIndicator.moveToItem(mViewPager.getCurrentItem());
+        mTabPageIndicator.moveToItem(mViewPager.getCurrentItem());
     }
 
 }

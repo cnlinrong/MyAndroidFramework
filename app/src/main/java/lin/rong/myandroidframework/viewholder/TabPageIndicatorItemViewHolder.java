@@ -12,7 +12,7 @@ import lin.rong.myandroidframework.R;
 /**
  * Created by Administrator on 2015/6/28.
  */
-public class HomeCatItemViewHolder extends TabPageIndicator.ViewHolderBase {
+public class TabPageIndicatorItemViewHolder extends TabPageIndicator.ViewHolderBase {
 
     private TextView mNameView;
     private View mTagView;
@@ -28,7 +28,7 @@ public class HomeCatItemViewHolder extends TabPageIndicator.ViewHolderBase {
 
     @Override
     public void updateView(int position, boolean isCurrent) {
-        mNameView.setText(position + "");
+        mNameView.setText(position + 1 + "");
         if (isCurrent) {
             mTagView.setVisibility(View.VISIBLE);
         } else {

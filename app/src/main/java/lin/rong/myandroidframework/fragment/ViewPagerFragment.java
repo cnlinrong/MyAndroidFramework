@@ -15,8 +15,8 @@ import in.srain.cube.image.ImageLoaderFactory;
 import in.srain.cube.request.JsonData;
 import in.srain.cube.util.CLog;
 import in.srain.cube.views.list.ListViewDataAdapter;
-import lin.rong.myandroidframework.viewholder.ImageListViewHolder;
 import lin.rong.myandroidframework.R;
+import lin.rong.myandroidframework.viewholder.ImageListViewHolder;
 
 public class ViewPagerFragment extends Fragment {
 

@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">国石</string>
+    <string name="app_name">国石拍</string>
 
     <string name="about">关于</string>
-    <string name="about_desc">国石拍卖</string>
+    <string name="about_desc">国石拍卖APP</string>
+    <string name="msg">消息</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
