@@ -6,7 +6,8 @@
     <item
         android:id="@+id/msg"
         android:title="@string/msg"
-        app:showAsAction="always|withText" />
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/about"

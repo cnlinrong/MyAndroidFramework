@@ -1,12 +1,11 @@
 package lin.rong.myandroidframework.fragment;
 
 import android.app.Fragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +24,7 @@ public class LeftDrawerFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private LeftDrawerFragment leftDrawerFragment;
-    private ActionBarDrawerToggle actionBarDrawerToggleV4;
-    private android.support.v7.app.ActionBarDrawerToggle actionBarDrawerToggleV7;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ListView drawerListView;
 
     @Nullable
@@ -51,55 +49,29 @@ public class LeftDrawerFragment extends Fragment {
         this.mDrawerLayout = mDrawerLayout;
         this.leftDrawerFragment = leftDrawerFragment;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            actionBarDrawerToggleV7 = new android.support.v7.app.ActionBarDrawerToggle(getActivity(), mDrawerLayout,
-                    R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    super.onDrawerClosed(drawerView);
-                }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
 
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    super.onDrawerOpened(drawerView);
-                }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
 
-            };
-            mDrawerLayout.post(new Runnable() {
+        };
+        mDrawerLayout.post(new Runnable() {
 
-                @Override
-                public void run() {
-                    actionBarDrawerToggleV7.syncState();
-                }
+            @Override
+            public void run() {
+                mActionBarDrawerToggle.syncState();
+            }
 
-            });
-            mDrawerLayout.setDrawerListener(actionBarDrawerToggleV7);
-        } else {
-            actionBarDrawerToggleV4 = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, true,
-                    R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    super.onDrawerClosed(drawerView);
-                }
-
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    super.onDrawerOpened(drawerView);
-                }
-
-            };
-            mDrawerLayout.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    actionBarDrawerToggleV4.syncState();
-                }
-
-            });
-            mDrawerLayout.setDrawerListener(actionBarDrawerToggleV4);
-        }
+        });
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
     }
 
     @Override
@@ -111,14 +83,8 @@ public class LeftDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (actionBarDrawerToggleV7.onOptionsItemSelected(item)) {
-                return true;
-            }
-        } else {
-            if (actionBarDrawerToggleV4.onOptionsItemSelected(item)) {
-                return true;
-            }
+        if (mActionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

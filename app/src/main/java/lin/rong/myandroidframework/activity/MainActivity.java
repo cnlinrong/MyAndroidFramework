@@ -1,11 +1,12 @@
 package lin.rong.myandroidframework.activity;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,7 @@ import lin.rong.myandroidframework.R;
 import lin.rong.myandroidframework.fragment.ViewPagerFragment;
 import lin.rong.myandroidframework.viewholder.TabPageIndicatorItemViewHolder;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
     private final int startIndex = 0;
 
@@ -95,7 +96,7 @@ public class MainActivity extends FragmentActivity {
         leftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.leftDrawerFragment);
         leftDrawerFragment.init(mDrawerLayout, leftDrawerFragment);
 
-        actionBar = getActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mViewPager.setCurrentItem(startIndex);
